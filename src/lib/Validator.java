@@ -1,10 +1,9 @@
 package lib;
 
 
-public interface Validator<T> {
-    static <T> DefaultValidatorBuilder<T> of(Class<T> validatedType) {
-        return new DefaultValidatorBuilder<>(validatedType);
+public interface Validator {
+	static DefaultValidatorBuilder getBuilder() {
+        return new DefaultValidatorBuilder();
     }
-
-    ValidationResult<T> validate(T subject);
+    ValidationResult validate(String subject);
 }

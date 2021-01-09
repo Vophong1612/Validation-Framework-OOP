@@ -6,21 +6,21 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Predicate;
 
-public class DefaultValidator<T> implements Validator<T> {
+public class DefaultValidator implements Validator {
 
-    private final Map<Predicate<T>, String> validations;
+    private final Map<Predicate<String>, String> validations;
 
-    DefaultValidator(Map<Predicate<T>, String> validations) {
+    DefaultValidator(Map<Predicate<String>, String> validations) {
         this.validations = validations;
     }
 
     @Override
-    public ValidationResult<T> validate(T subject) {
+    public ValidationResult validate(String value) {
         return validations.entrySet()
                 .stream()
-                .filter(entry -> !entry.getKey().test(subject))
+                .filter(entry -> !entry.getKey().test(value))
                 .findFirst()
-                .<ValidationResult<T>>map(entry -> new NegativeValidationResult<>(subject, entry.getValue()))
-                .orElseGet(() -> new PositiveValidationResult<>(subject, "Correct"));
+                .<ValidationResult>map(entry -> new NegativeValidationResult(value, entry.getValue()))
+                .orElseGet(() -> new PositiveValidationResult(value, "Correct"));
     }
 }

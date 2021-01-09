@@ -23,4 +23,9 @@ public class MovieCharacter {
     public int hashCode() {
         return value != null ? value.hashCode() : 0;
     }
+    
+    @Override
+	public String toString() {
+    	return this.value;
+    }
 }

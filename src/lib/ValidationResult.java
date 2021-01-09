@@ -1,13 +1,13 @@
 package lib;
 
 
-import java.util.Set;
 
-public interface ValidationResult<T> {
+
+public interface ValidationResult {
 
     boolean isValid();
 
-    T getValue();
+    String getValue();
 
     String processedValidations();
 }
