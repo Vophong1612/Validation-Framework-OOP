@@ -1,6 +1,5 @@
 package demo;
 import lib.DefaultValidator;
-import lib.EmailValidator;
 import lib.ValidationResult;
 import lib.Validator;
 

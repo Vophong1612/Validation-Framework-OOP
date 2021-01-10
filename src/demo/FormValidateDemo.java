@@ -35,9 +35,10 @@ public class FormValidateDemo extends JFrame {
     private JTextField email;
     private JTextField username;
     private JTextField mob;
-    private JPasswordField passwordField;
     private JButton btnNewButton;
     private JLabel lblEmailMessage;
+    private JLabel lblPassValid;
+    private JTextField passwordField;
 
     /**
      * Launch the application.
@@ -126,25 +127,42 @@ public class FormValidateDemo extends JFrame {
 
         JLabel lblMobileNumber = new JLabel("Mobile number");
         lblMobileNumber.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        lblMobileNumber.setBounds(542, 329, 139, 26);
+        lblMobileNumber.setBounds(542, 334, 139, 26);
         contentPane.add(lblMobileNumber);
+        
+
+        
 
         mob = new JTextField();
         mob.setFont(new Font("Tahoma", Font.PLAIN, 32));
-        mob.setBounds(707, 320, 228, 50);
+        mob.setBounds(707, 324, 228, 50);
         contentPane.add(mob);
         mob.setColumns(10);
-
-        passwordField = new JPasswordField();
+        
+        passwordField = new JTextField();
         passwordField.setFont(new Font("Tahoma", Font.PLAIN, 32));
         passwordField.setBounds(707, 235, 228, 50);
         contentPane.add(passwordField);
+        passwordField.setColumns(10);
         
         lblEmailMessage = new JLabel("New label");
         lblEmailMessage.setForeground(Color.RED);
-        lblEmailMessage.setBounds(214, 368, 228, 13);
+        lblEmailMessage.setBounds(214, 376, 228, 13);
         lblEmailMessage.setVisible(false);
 
+        JLabel lbValidPhoneNum = new JLabel("New label");
+        lbValidPhoneNum.setForeground(Color.RED);
+        lbValidPhoneNum.setBounds(707, 384, 228, 13);
+        contentPane.add(lbValidPhoneNum);
+        lbValidPhoneNum.setVisible(false);
+        
+        
+        lblPassValid = new JLabel("New label");
+        lblPassValid.setForeground(Color.RED);
+        lblPassValid.setBounds(542, 295, 393, 29);
+        contentPane.add(lblPassValid);
+        lblPassValid.setVisible(false); 
+        
         btnNewButton = new JButton("Register");
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -154,20 +172,39 @@ public class FormValidateDemo extends JFrame {
                 String userName = username.getText();
                 String mobileNumber = mob.getText();
                 int len = mobileNumber.length();
-                String password = passwordField.getText();
+                String pass = passwordField.getText();
 
                 String msg = "" + firstName;
                 msg += " \n";
                 Validator emailValidator = Validator.getEmailBuilder()
             			.ensure();
                 ValidationResult validationResult = emailValidator.validate(emailId);
+                
+                Validator phoneNumlValidator = Validator.getPhoneBuilder()
+            			.ensure();
+                ValidationResult phoneNumValidationResult = phoneNumlValidator.validate(mobileNumber);
+                
+                Validator passwordValidator = Validator.getPasswordBuilder()
+            			.ensure();
+                ValidationResult passwordValidationResult = passwordValidator.validate(pass);
                 if (!validationResult.isValid()) {
                 	lblEmailMessage.setVisible(true);
                 	lblEmailMessage.setText(validationResult.processedValidations());
                 } else {
                 	lblEmailMessage.setVisible(false);
                 }
-                
+                if (!phoneNumValidationResult.isValid()) {
+                	lbValidPhoneNum.setVisible(true);
+                	lbValidPhoneNum.setText(phoneNumValidationResult.processedValidations());
+                } else {
+                	lbValidPhoneNum.setVisible(false);
+                }
+                if (!passwordValidationResult.isValid()) {
+                	lblPassValid.setVisible(true);
+                	lblPassValid.setText(passwordValidationResult.processedValidations());
+                } else {
+                	lblPassValid.setVisible(false);
+                }
 
                 
             }
@@ -177,5 +214,9 @@ public class FormValidateDemo extends JFrame {
         contentPane.add(btnNewButton);
         
         contentPane.add(lblEmailMessage);
+        
+      
+        
+              
     }
 }
