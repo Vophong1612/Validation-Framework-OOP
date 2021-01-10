@@ -14,5 +14,8 @@ public interface Validator {
 	static PasswordValidatorBuilder getPasswordBuilder() {
 		return new PasswordValidatorBuilder();
 	}
+	static TimeValidatorBuilder getTimeBuilder() {
+		return new TimeValidatorBuilder();
+	}
     ValidationResult validate(String subject);
 }
