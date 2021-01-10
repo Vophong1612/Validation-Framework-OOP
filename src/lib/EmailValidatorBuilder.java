@@ -6,27 +6,8 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-public class EmailValidatorBuilder implements ValidatorBuilder, EnsuringValidatorBuilder {
-
-    private final Map<Predicate<String>, String> validations = new HashMap<>();
-
+public class EmailValidatorBuilder extends DefaultValidatorBuilder {
     public EmailValidatorBuilder() {
-    	validations.put(character -> character.contains("@"), "Email need contain '@' character");
+    	this.validation(character -> java.util.regex.Pattern.compile("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$").matcher(character).find(), "Enter valid email");
 	}
-
-    @Override
-    public EmailValidatorBuilder validation(Predicate<String> validation, String message) {
-        validations.put(validation, message);
-        return this;
-    }
-
-    @Override
-    public Validator ensure() {
-        return new EmailValidator(validations);
-    }
-
-    @Override
-    public String toString() {
-        return "Validator for Email";
-    }
 }

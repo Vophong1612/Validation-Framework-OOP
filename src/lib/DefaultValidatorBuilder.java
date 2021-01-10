@@ -6,13 +6,14 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-public class DefaultValidatorBuilder implements ValidatorBuilder, EnsuringValidatorBuilder {
+public class DefaultValidatorBuilder implements ValidatorBuilder {
 
     private final Map<Predicate<String>, String> validations = new HashMap<>();
 
 //    public DefaultValidatorBuilder(Class<T> validatedType) {
 //        this.validatedType = validatedType;
 //    }
+
 
     @Override
     public DefaultValidatorBuilder validation(Predicate<String> validation, String message) {

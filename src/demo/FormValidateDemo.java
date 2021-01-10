@@ -20,6 +20,7 @@ import javax.swing.border.EmptyBorder;
 
 import lib.ValidationResult;
 import lib.Validator;
+import java.awt.Color;
 
 /**
  * User Registration using Swing
@@ -36,6 +37,7 @@ public class FormValidateDemo extends JFrame {
     private JTextField mob;
     private JPasswordField passwordField;
     private JButton btnNewButton;
+    private JLabel lblEmailMessage;
 
     /**
      * Launch the application.
@@ -137,6 +139,11 @@ public class FormValidateDemo extends JFrame {
         passwordField.setFont(new Font("Tahoma", Font.PLAIN, 32));
         passwordField.setBounds(707, 235, 228, 50);
         contentPane.add(passwordField);
+        
+        lblEmailMessage = new JLabel("New label");
+        lblEmailMessage.setForeground(Color.RED);
+        lblEmailMessage.setBounds(214, 368, 228, 13);
+        lblEmailMessage.setVisible(false);
 
         btnNewButton = new JButton("Register");
         btnNewButton.addActionListener(new ActionListener() {
@@ -154,7 +161,13 @@ public class FormValidateDemo extends JFrame {
                 Validator emailValidator = Validator.getEmailBuilder()
             			.ensure();
                 ValidationResult validationResult = emailValidator.validate(emailId);
-                JOptionPane.showMessageDialog(btnNewButton, validationResult.processedValidations());
+                if (!validationResult.isValid()) {
+                	lblEmailMessage.setVisible(true);
+                	lblEmailMessage.setText(validationResult.processedValidations());
+                } else {
+                	lblEmailMessage.setVisible(false);
+                }
+                
 
                 
             }
@@ -162,5 +175,7 @@ public class FormValidateDemo extends JFrame {
         btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 22));
         btnNewButton.setBounds(399, 447, 259, 74);
         contentPane.add(btnNewButton);
+        
+        contentPane.add(lblEmailMessage);
     }
 }

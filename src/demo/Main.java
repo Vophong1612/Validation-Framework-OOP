@@ -13,13 +13,13 @@ public class Main {
 //            .ensure();
 	
 	private final static Validator emailValidator = Validator.getEmailBuilder()
-			.validation(character -> Character.isUpperCase(character.charAt(0)), "name needs to start with uppercase letter")
+			.validation(character -> character.matches(".*[0-9].*"), "Should have number")
 			.ensure();
 	
 	public static void main(String[] args) {
 
 //        ValidationResult validationResult = stringValidator.validate("Konna pinciotti");
-		ValidationResult validationResult = emailValidator.validate("Vophong1612@gmail.com");
+		ValidationResult validationResult = emailValidator.validate("vophong@gmail.com");
         System.out.println(validationResult.processedValidations());
         System.out.println(validationResult.getValue());
 		
