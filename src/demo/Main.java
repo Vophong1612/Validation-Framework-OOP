@@ -12,12 +12,14 @@ public class Main {
 //            .validation(character -> character.length() < 50, "name needs to has to be shorter than 50 characters")
 //            .ensure();
 	
-	private final static Validator emailValidator = Validator.getEmailBuilder().ensure();
+	private final static Validator emailValidator = Validator.getEmailBuilder()
+			.validation(character -> Character.isUpperCase(character.charAt(0)), "name needs to start with uppercase letter")
+			.ensure();
 	
 	public static void main(String[] args) {
 
 //        ValidationResult validationResult = stringValidator.validate("Konna pinciotti");
-		ValidationResult validationResult = emailValidator.validate("vophong1612@");
+		ValidationResult validationResult = emailValidator.validate("Vophong1612@gmail.com");
         System.out.println(validationResult.processedValidations());
         System.out.println(validationResult.getValue());
 		
