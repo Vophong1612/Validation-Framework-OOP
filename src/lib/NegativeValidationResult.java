@@ -9,7 +9,7 @@ public class NegativeValidationResult implements ValidationResult {
     private final String value;
     private final String message;
 
-    NegativeValidationResult(String value, String message) {
+    public NegativeValidationResult(String value, String message) {
         this.value = value;
         this.message = message;
     }
