@@ -39,6 +39,7 @@ public class FormValidateDemo extends JFrame {
     private JLabel lblEmailMessage;
     private JLabel lblPassValid;
     private JTextField passwordField;
+    private JTextField textTime;
 
     /**
      * Launch the application.
@@ -163,6 +164,17 @@ public class FormValidateDemo extends JFrame {
         contentPane.add(lblPassValid);
         lblPassValid.setVisible(false); 
         
+        textTime = new JTextField();
+        textTime.setBounds(707, 403, 228, 44);
+        contentPane.add(textTime);
+        textTime.setColumns(10);
+        
+        JLabel lblValidTime = new JLabel("New label");
+        lblValidTime.setForeground(Color.RED);
+        lblValidTime.setBounds(707, 469, 228, 13);
+        contentPane.add(lblValidTime);
+        lblValidTime.setVisible(false);
+        
         btnNewButton = new JButton("Register");
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -173,6 +185,7 @@ public class FormValidateDemo extends JFrame {
                 String mobileNumber = mob.getText();
                 int len = mobileNumber.length();
                 String pass = passwordField.getText();
+                String time = textTime.getText();
 
                 String msg = "" + firstName;
                 msg += " \n";
@@ -187,6 +200,10 @@ public class FormValidateDemo extends JFrame {
                 Validator passwordValidator = Validator.getPasswordBuilder()
             			.ensure();
                 ValidationResult passwordValidationResult = passwordValidator.validate(pass);
+                
+                Validator timeValidator = Validator.getTimeBuilder()
+            			.ensure();
+                ValidationResult timeValidationResult = timeValidator.validate(time);
                 if (!validationResult.isValid()) {
                 	lblEmailMessage.setVisible(true);
                 	lblEmailMessage.setText(validationResult.processedValidations());
@@ -205,15 +222,30 @@ public class FormValidateDemo extends JFrame {
                 } else {
                 	lblPassValid.setVisible(false);
                 }
+                if (!timeValidationResult.isValid()) {
+                	lblValidTime.setVisible(true);
+                	lblValidTime.setText(timeValidationResult.processedValidations());
+                } else {
+                	lblValidTime.setVisible(false);
+                }
 
                 
             }
         });
         btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 22));
-        btnNewButton.setBounds(399, 447, 259, 74);
+        btnNewButton.setBounds(724, 45, 259, 74);
         contentPane.add(btnNewButton);
         
         contentPane.add(lblEmailMessage);
+        
+        JLabel lblTime = new JLabel("Time");
+        lblTime.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        lblTime.setBounds(541, 411, 124, 36);
+        contentPane.add(lblTime);
+        
+      
+        
+      
         
       
         

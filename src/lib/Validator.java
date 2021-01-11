@@ -18,5 +18,9 @@ public interface Validator {
 	static CustomValidatorBuilder getCustomBuilder(ValidatorSupplier validatorSupplier) {
 		return new CustomValidatorBuilder(validatorSupplier);
 	}
+	
+	static TimeValidatorBuilder getTimeBuilder() {
+		return new TimeValidatorBuilder();
+	}
     ValidationResult validate(String subject);
 }
