@@ -1,6 +1,7 @@
 package demo;
 import lib.DefaultValidator;
-import lib.EmailValidator;
+import lib.DefaultValidatorBuilder;
+import lib.EmailValidatorBuilder;
 import lib.ValidationResult;
 import lib.Validator;
 
@@ -13,12 +14,12 @@ public class Main {
 //            .ensure();
 	
 	private final static Validator emailValidator = Validator.getEmailBuilder()
-			.validation(character -> character.matches(".*[0-9].*"), "Should have number")
 			.ensure();
 	
 	public static void main(String[] args) {
 
 //        ValidationResult validationResult = stringValidator.validate("Konna pinciotti");
+		
 		ValidationResult validationResult = emailValidator.validate("vophong@gmail.com");
         System.out.println(validationResult.processedValidations());
         System.out.println(validationResult.getValue());

@@ -14,6 +14,9 @@ public class DefaultValidatorBuilder implements ValidatorBuilder {
 //        this.validatedType = validatedType;
 //    }
 
+    protected DefaultValidatorBuilder() {
+		// TODO Auto-generated constructor stub
+	}
 
     @Override
     public DefaultValidatorBuilder validation(Predicate<String> validation, String message) {
