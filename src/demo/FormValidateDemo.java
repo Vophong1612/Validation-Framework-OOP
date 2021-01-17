@@ -73,62 +73,62 @@ public class FormValidateDemo extends JFrame {
 
         JLabel lblNewUserRegister = new JLabel("New User Register");
         lblNewUserRegister.setFont(new Font("Times New Roman", Font.PLAIN, 42));
-        lblNewUserRegister.setBounds(362, 52, 325, 50);
+        lblNewUserRegister.setBounds(362, 23, 325, 50);
         contentPane.add(lblNewUserRegister);
 
         JLabel lblName = new JLabel("First name");
         lblName.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        lblName.setBounds(58, 152, 99, 43);
+        lblName.setBounds(58, 123, 99, 43);
         contentPane.add(lblName);
 
         JLabel lblNewLabel = new JLabel("Last name");
         lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        lblNewLabel.setBounds(58, 243, 110, 29);
+        lblNewLabel.setBounds(58, 214, 110, 29);
         contentPane.add(lblNewLabel);
 
         JLabel lblEmailAddress = new JLabel("Email\r\n address");
         lblEmailAddress.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        lblEmailAddress.setBounds(58, 324, 124, 36);
+        lblEmailAddress.setBounds(58, 295, 124, 36);
         contentPane.add(lblEmailAddress);
 
         firstname = new JTextField();
         firstname.setFont(new Font("Tahoma", Font.PLAIN, 32));
-        firstname.setBounds(214, 151, 228, 50);
+        firstname.setBounds(214, 122, 228, 50);
         contentPane.add(firstname);
         firstname.setColumns(10);
 
         lastname = new JTextField();
         lastname.setFont(new Font("Tahoma", Font.PLAIN, 32));
-        lastname.setBounds(214, 235, 228, 50);
+        lastname.setBounds(214, 206, 228, 50);
         contentPane.add(lastname);
         lastname.setColumns(10);
 
         email = new JTextField();
 
         email.setFont(new Font("Tahoma", Font.PLAIN, 32));
-        email.setBounds(214, 320, 228, 50);
+        email.setBounds(214, 291, 228, 50);
         contentPane.add(email);
         email.setColumns(10);
 
         username = new JTextField();
         username.setFont(new Font("Tahoma", Font.PLAIN, 32));
-        username.setBounds(707, 151, 228, 50);
+        username.setBounds(707, 122, 228, 50);
         contentPane.add(username);
         username.setColumns(10);
 
         JLabel lblUsername = new JLabel("Username");
         lblUsername.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        lblUsername.setBounds(542, 159, 99, 29);
+        lblUsername.setBounds(542, 130, 99, 29);
         contentPane.add(lblUsername);
 
         JLabel lblPassword = new JLabel("Password");
         lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        lblPassword.setBounds(542, 245, 99, 24);
+        lblPassword.setBounds(58, 384, 99, 24);
         contentPane.add(lblPassword);
 
         JLabel lblMobileNumber = new JLabel("Mobile number");
         lblMobileNumber.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        lblMobileNumber.setBounds(542, 334, 139, 26);
+        lblMobileNumber.setBounds(542, 215, 139, 26);
         contentPane.add(lblMobileNumber);
         
 
@@ -136,46 +136,46 @@ public class FormValidateDemo extends JFrame {
 
         mob = new JTextField();
         mob.setFont(new Font("Tahoma", Font.PLAIN, 32));
-        mob.setBounds(707, 324, 228, 50);
+        mob.setBounds(708, 202, 228, 50);
         contentPane.add(mob);
         mob.setColumns(10);
         
         passwordField = new JTextField();
         passwordField.setFont(new Font("Tahoma", Font.PLAIN, 32));
-        passwordField.setBounds(707, 235, 228, 50);
+        passwordField.setBounds(223, 374, 228, 50);
         contentPane.add(passwordField);
         passwordField.setColumns(10);
         
         lblEmailMessage = new JLabel("New label");
         lblEmailMessage.setForeground(Color.RED);
-        lblEmailMessage.setBounds(214, 376, 228, 13);
+        lblEmailMessage.setBounds(214, 347, 228, 13);
         lblEmailMessage.setVisible(false);
 
         JLabel lbValidPhoneNum = new JLabel("New label");
         lbValidPhoneNum.setForeground(Color.RED);
-        lbValidPhoneNum.setBounds(707, 384, 228, 13);
+        lbValidPhoneNum.setBounds(708, 262, 228, 13);
         contentPane.add(lbValidPhoneNum);
         lbValidPhoneNum.setVisible(false);
         
         
         lblPassValid = new JLabel("New label");
         lblPassValid.setForeground(Color.RED);
-        lblPassValid.setBounds(542, 295, 393, 29);
+        lblPassValid.setBounds(58, 424, 726, 29);
         contentPane.add(lblPassValid);
         lblPassValid.setVisible(false); 
         
         textTime = new JTextField();
-        textTime.setBounds(707, 403, 228, 44);
+        textTime.setBounds(708, 281, 228, 44);
         contentPane.add(textTime);
         textTime.setColumns(10);
         
         JLabel lblValidTime = new JLabel("New label");
         lblValidTime.setForeground(Color.RED);
-        lblValidTime.setBounds(707, 469, 228, 13);
+        lblValidTime.setBounds(707, 335, 228, 13);
         contentPane.add(lblValidTime);
         lblValidTime.setVisible(false);
         
-        btnNewButton = new JButton("Register");
+        btnNewButton = new JButton("Validate");
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String firstName = firstname.getText();
@@ -233,14 +233,14 @@ public class FormValidateDemo extends JFrame {
             }
         });
         btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 22));
-        btnNewButton.setBounds(724, 45, 259, 74);
+        btnNewButton.setBounds(380, 467, 259, 74);
         contentPane.add(btnNewButton);
         
         contentPane.add(lblEmailMessage);
         
         JLabel lblTime = new JLabel("Time");
         lblTime.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        lblTime.setBounds(541, 411, 124, 36);
+        lblTime.setBounds(542, 289, 124, 36);
         contentPane.add(lblTime);
         
       
