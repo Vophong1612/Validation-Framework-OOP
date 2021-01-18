@@ -1,21 +1,14 @@
 package lib;
 
-
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Function;
 import java.util.function.Predicate;
 
-public class DefaultValidatorBuilder implements ValidatorBuilder {
+public class DefaultValidatorBuilder implements IValidatorBuilder {
 
     private final Map<Predicate<String>, String> validations = new HashMap<>();
 
-//    public DefaultValidatorBuilder(Class<T> validatedType) {
-//        this.validatedType = validatedType;
-//    }
-
     protected DefaultValidatorBuilder() {
-		// TODO Auto-generated constructor stub
 	}
 
     @Override
@@ -25,7 +18,7 @@ public class DefaultValidatorBuilder implements ValidatorBuilder {
     }
 
     @Override
-    public Validator ensure() {
+    public AbtractValidator build() {
         return new DefaultValidator(validations);
     }
 

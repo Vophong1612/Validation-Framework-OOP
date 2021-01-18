@@ -1,9 +1,6 @@
 package lib;
 
-
-
-
-public interface ValidationResult {
+public interface IValidationResult {
 
     boolean isValid();
 

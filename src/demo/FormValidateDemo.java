@@ -5,21 +5,15 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-
-import lib.ValidationResult;
-import lib.Validator;
+import lib.IValidationResult;
+import lib.AbtractValidator;
+import lib.AbtractValidator.BuilderType;
 import java.awt.Color;
 
 /**
@@ -71,9 +65,9 @@ public class FormValidateDemo extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        JLabel lblNewUserRegister = new JLabel("New User Register");
+        JLabel lblNewUserRegister = new JLabel("Validate Infomation");
         lblNewUserRegister.setFont(new Font("Times New Roman", Font.PLAIN, 42));
-        lblNewUserRegister.setBounds(362, 23, 325, 50);
+        lblNewUserRegister.setBounds(362, 23, 355, 50);
         contentPane.add(lblNewUserRegister);
 
         JLabel lblName = new JLabel("First name");
@@ -142,7 +136,7 @@ public class FormValidateDemo extends JFrame {
         
         passwordField = new JTextField();
         passwordField.setFont(new Font("Tahoma", Font.PLAIN, 32));
-        passwordField.setBounds(223, 374, 228, 50);
+        passwordField.setBounds(214, 367, 228, 50);
         contentPane.add(passwordField);
         passwordField.setColumns(10);
         
@@ -178,32 +172,26 @@ public class FormValidateDemo extends JFrame {
         btnNewButton = new JButton("Validate");
         btnNewButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String firstName = firstname.getText();
-                String lastName = lastname.getText();
                 String emailId = email.getText();
-                String userName = username.getText();
                 String mobileNumber = mob.getText();
-                int len = mobileNumber.length();
                 String pass = passwordField.getText();
                 String time = textTime.getText();
 
-                String msg = "" + firstName;
-                msg += " \n";
-                Validator emailValidator = Validator.getEmailBuilder()
-            			.ensure();
-                ValidationResult validationResult = emailValidator.validate(emailId);
+                AbtractValidator emailValidator = AbtractValidator.getInstance(BuilderType.EMAIL)
+            			.build();
+                IValidationResult validationResult = emailValidator.validate(emailId);
                 
-                Validator phoneNumlValidator = Validator.getPhoneBuilder()
-            			.ensure();
-                ValidationResult phoneNumValidationResult = phoneNumlValidator.validate(mobileNumber);
+                AbtractValidator phoneNumlValidator = AbtractValidator.getInstance(BuilderType.PHONE_NUMBER)
+            			.build();
+                IValidationResult phoneNumValidationResult = phoneNumlValidator.validate(mobileNumber);
                 
-                Validator passwordValidator = Validator.getPasswordBuilder()
-            			.ensure();
-                ValidationResult passwordValidationResult = passwordValidator.validate(pass);
+                AbtractValidator passwordValidator = AbtractValidator.getInstance(BuilderType.PASSWORD)
+            			.build();
+                IValidationResult passwordValidationResult = passwordValidator.validate(pass);
                 
-                Validator timeValidator = Validator.getTimeBuilder()
-            			.ensure();
-                ValidationResult timeValidationResult = timeValidator.validate(time);
+                AbtractValidator timeValidator = AbtractValidator.getInstance(BuilderType.TIME)
+            			.build();
+                IValidationResult timeValidationResult = timeValidator.validate(time);
                 if (!validationResult.isValid()) {
                 	lblEmailMessage.setVisible(true);
                 	lblEmailMessage.setText(validationResult.processedValidations());
@@ -241,14 +229,6 @@ public class FormValidateDemo extends JFrame {
         JLabel lblTime = new JLabel("Time");
         lblTime.setFont(new Font("Tahoma", Font.PLAIN, 20));
         lblTime.setBounds(542, 289, 124, 36);
-        contentPane.add(lblTime);
-        
-      
-        
-      
-        
-      
-        
-              
+        contentPane.add(lblTime); 
     }
 }

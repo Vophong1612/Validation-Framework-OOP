@@ -2,15 +2,14 @@ package lib;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Function;
 import java.util.function.Predicate;
 
-public class CustomValidatorBuilder implements ValidatorBuilder{
+public class CustomValidatorBuilder implements IValidatorBuilder{
 
     protected final Map<Predicate<String>, String> validations = new HashMap<>();
-    private final ValidatorSupplier validatorSupplier;
+    private final IValidatorSupplier validatorSupplier;
 
-    public CustomValidatorBuilder(ValidatorSupplier validatorSupplier) {
+    public CustomValidatorBuilder(IValidatorSupplier validatorSupplier) {
         this.validatorSupplier = validatorSupplier;
     }
 
@@ -22,7 +21,7 @@ public class CustomValidatorBuilder implements ValidatorBuilder{
     }
 
     @Override
-    public Validator ensure() {
+    public AbtractValidator build() {
         return validatorSupplier.apply(validations);
     }
 

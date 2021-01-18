@@ -5,5 +5,5 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 @FunctionalInterface
-public interface ValidatorSupplier extends Function<Map<Predicate<String>, String>, Validator> {
+public interface IValidatorSupplier extends Function<Map<Predicate<String>, String>, AbtractValidator> {
 }

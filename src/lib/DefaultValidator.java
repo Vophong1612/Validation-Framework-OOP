@@ -1,12 +1,9 @@
 package lib;
 
-
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 import java.util.function.Predicate;
 
-public class DefaultValidator implements Validator {
+public class DefaultValidator extends AbtractValidator {
 
     private final Map<Predicate<String>, String> validations;
 
@@ -15,12 +12,12 @@ public class DefaultValidator implements Validator {
     }
 
     @Override
-    public ValidationResult validate(String value) {
+    public IValidationResult validate(String value) {
         return validations.entrySet()
                 .stream()
                 .filter(entry -> !entry.getKey().test(value))
                 .findFirst()
-                .<ValidationResult>map(entry -> new NegativeValidationResult(value, entry.getValue()))
+                .<IValidationResult>map(entry -> new NegativeValidationResult(value, entry.getValue()))
                 .orElseGet(() -> new PositiveValidationResult(value, "Correct"));
     }
 }
